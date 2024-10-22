@@ -1,24 +1,25 @@
+@if(profile){
+
 <div class="profile-card">
   <div class="avatar-name">
     <img src="/assets/images/png/user-05.jpg" alt="avatar" class="profile-card__avatar">
     <div class="profile-card__name">
-      <strong>Rayan Gosling</strong>
-      <div>rayn</div>
+      <strong>{{profile.fname}}</strong>
+      <div>{{profile.username}}</div>
     </div>
   </div>
   <p class="profile-card__description">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptatibus accusamus dolores blanditiis
-    perspiciatis ipsa doloremque, officiis suscipit quibusdam consequatur ut illo unde rerum voluptates cum libero
-    dolore culpa. Laboriosam.
+    {{profile.description}}
   </p>
   <div class="profile-card__skils">
-    <span class="profile-card__skil">JS</span>
-    <span class="profile-card__skil">HTML</span>
-    <span class="profile-card__skil">CSS</span>
-    <span class="profile-card__skil">Angular</span>
-    <span class="profile-card__skil">Frontend</span>
+    @for(skill of profile.stack; track skill){
+
+    <span class="profile-card__skil">{{skill}}</span>
+    }
+
   </div>
   <div class="porfile-card__action-btns">
     <button class="btn">Subscribe</button>
   </div>
 </div>
+}
