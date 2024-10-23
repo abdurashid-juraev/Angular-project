@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './../../auth/auth.service';
+import { Component, inject } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,11 +16,28 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
+
   form = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
+
   onSubmit() {
-    console.dir(this.form.value);
+    if (this.form.valid) {
+      const formValue = this.form.value;
+
+      // Null yoki undefined qiymatlarni tekshirish va default qiymat berish
+      const username = formValue.username ?? '';
+      const password = formValue.password ?? '';
+
+      this.authService.login({ username, password }).subscribe((res) => {
+        this.router.navigate(['']);
+        console.log(res);
+      });
+
+      console.debug({ username, password }); // Tekshirilgan va moslashtirilgan qiymatlar
+    }
   }
 }
