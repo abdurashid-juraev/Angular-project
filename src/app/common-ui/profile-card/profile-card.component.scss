@@ -48,12 +48,7 @@
   margin-bottom: 5px;
   line-height: 24px;
 }
-.btn {
-  border: none;
-  background-color: var(--primary-color);
-  color: var(--dark-color);
-  padding: 10px 20px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 24px;
+.porfile-card__action-btns {
+  display: flex;
+  justify-content: center;
 }
