@@ -4,7 +4,16 @@
     <label class="login-label" for=""><span>Username</span>
       <input formControlName="username" type="text" autocomplete="off" placeholder="username"></label>
     <label class="login-label" for=""><span>Password</span>
-      <input formControlName="password" autocomplete="current-password" type="password" placeholder="password"></label>
+      <input formControlName="password" autocomplete="current-password" [type]="isPasswordVisible()?'text':'password'"
+        placeholder="password">
+      <button class="btn-eye" (click)="isPasswordVisible.set(!isPasswordVisible())">
+        @if(!isPasswordVisible()){
+        <img src="/assets/images/svg/eye.svg" alt="">
+        }@else {
+        <img src="/assets/images/svg/open-eye.svg" alt="">
+        }
+      </button>
+    </label>
   </div>
   <button class="btn" type="submit">Enter</button>
 </form>
