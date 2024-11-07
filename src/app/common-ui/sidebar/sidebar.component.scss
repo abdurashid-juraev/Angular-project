@@ -33,3 +33,21 @@
     }
   }
 }
+.mb-20 {
+  margin-bottom: 20px;
+}
+.to-subscribers {
+  display: flex;
+  gap: 10px;
+  svg {
+    width: 20px;
+    height: 20px;
+    transform: rotate(-90deg);
+    color: var(--primary-color);
+  }
+}
+.to-subscribers-link {
+  display: inline-block;
+  color: var(--primary-color);
+  text-decoration: none;
+}
