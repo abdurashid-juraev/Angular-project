@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ProfileService } from '../../data/services/profile.service';
@@ -8,16 +8,6 @@ import { ProfileService } from '../../data/services/profile.service';
   standalone: true,
   imports: [RouterOutlet, SidebarComponent],
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
-  providers: [ProfileService],
+  styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
-  profileService: ProfileService = inject(ProfileService);
-
-  ngOnInit() {
-    this.profileService.getMe().subscribe((val) => {
-      console.log(val);
-    });
-    console.log(this.profileService);
-  }
-}
+export class LayoutComponent {}

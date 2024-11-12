@@ -1,23 +1,28 @@
 @if (profile) {
+
 <div class="profile-card">
   <div class="avatar-name">
-    <img [src]="profile.avatarUrl | imgUrl" [alt]="profile.lastName" class="profile-card__avatar">
+    <img [src]='profile.avatarUrl | imgUrl'
+     alt="avatar" 
+     class="profile-card__avatar" />
     <div class="profile-card__name">
-      <strong>{{profile.firstName}} {{profile.lastName}}</strong>
-      <div>{{profile.username}}</div>
+      <strong class="h6">{{ profile.firstName }} {{ profile.lastName }}</strong>
+      <span class="subtitle">{{ profile.username }}</span>
     </div>
   </div>
-  <p class="profile-card__description">
-    {{profile.description}}
-  </p>
-  <div class="profile-card__skils">
-    @for(skill of profile.stack; track skill){
-    <span class="profile-card__skil">{{skill}}</span>
-    }
-
+  <div class="profile-card__description">
+    {{ profile.description }}
   </div>
-  <div class="porfile-card__action-btns">
-    <button class="btn">Subscribe</button>
+  <div class="profile-card__tags">
+    @for (skill of profile.stack; track $index) {
+
+    <div class="skill-tag">{{ skill }}</div>
+    }
+  </div>
+  <div class="profile-card__action-btns">
+    <button class="btn">Подписаться</button>
   </div>
 </div>
+} @else {
+<div>profile не найден</div>
 }

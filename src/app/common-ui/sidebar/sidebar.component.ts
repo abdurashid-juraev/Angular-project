@@ -1,39 +1,41 @@
-import { ProfileService } from './../../data/services/profile.service';
 import { Component, inject } from '@angular/core';
-import { HomeSvgComponent } from '../svg-icon/home-svg/home-svg.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-// import { SubcriberCardComponent } from './subcriber-card/subcriber-card.component';
-// import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
+import { SvgIconComponent } from "../svg-icon/svg-icon.component";
+import { SubscriberCardComponent } from "./subscriber-card/subscriber-card.component";
+import { RouterModule } from '@angular/router';
+import { ProfileService } from '../../data/services/profile.service';
+import { firstValueFrom } from 'rxjs';
+import { ImgUrlPipe } from "../../helpers/pipes/img-url.pipe";
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [
-    HomeSvgComponent,
-    // ImgUrlPipe,
+    SvgIconComponent,
     CommonModule,
-    RouterLink,
-    // SubcriberCardComponent,
-  ],
+    SubscriberCardComponent,
+    RouterModule,
+    ImgUrlPipe
+],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  profileService: ProfileService = inject(ProfileService);
-  me = this.profileService;
+  profileService = inject(ProfileService)
 
-  subscribers$ = this.profileService.getSubscribersShortList();
+  subscribers$ = this.profileService.getSubscribersShotList()
+  
+  me= this.profileService.me
 
-  menuItems: { label: string; icon: string; link: string }[] = [
+  menuItems = [
     {
       label: 'My page',
       icon: 'home',
       link: 'profile/me',
     },
     {
-      label: 'Chat',
-      icon: 'chat',
+      label: 'Chats',
+      icon: 'chats',
       link: 'chats',
     },
     {
@@ -42,4 +44,8 @@ export class SidebarComponent {
       link: 'search',
     },
   ];
+
+  ngOnInit() {
+    firstValueFrom(this.profileService.getMe() )
+  }
 }
