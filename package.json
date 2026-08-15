@@ -20,7 +20,10 @@
     "@angular/platform-browser": "^22.1.2",
     "@angular/platform-browser-dynamic": "^22.1.2",
     "@angular/router": "^22.1.2",
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.26",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.3.3",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
